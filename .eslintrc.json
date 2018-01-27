@@ -6,13 +6,20 @@
       "node": true
     },
     "parserOptions": {
+      "parser": "babel-eslint",
       "ecmaVersion": 2017,
       "ecmaFeatures": {
         "jsx": true
       },
       "sourceType": "module"
     },
-    "extends": "airbnb",
+    "extends": [
+      "airbnb-base",
+      "plugin:vue/recommended"
+    ],
+    "plugins": [
+      "html"
+    ],
     "rules": {
       "semi": [
         "error",

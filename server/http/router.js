@@ -1,4 +1,6 @@
 const express = require('express');
+const logger = require('../logger');
+
 const router = express.Router();
 
 const handleRequest = async ({ input, res, method }) => {
@@ -10,28 +12,27 @@ const handleRequest = async ({ input, res, method }) => {
     }
     res.json(result);
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     res.status(500);
     res.json({ error: 'internal_server_error' });
   }
 };
 
-const createRoute = endpoint => {
+const createRoute = (endpoint) => {
   const { route, http } = endpoint;
 
   // As delete is a special world in javascript let's we are using deleteHttp instead.
   // Notice that at the moment we are strictly working just with get and post verbs, so no further implementation was done.
-  const { get, post, notUseCache } = http;
+  const { get, post } = http;
 
   if (get) {
-    const getHandler = (req, res) => {
-      return handleRequest({
+    const getHandler = (req, res) =>
+      handleRequest({
         // keep in mind that if any parameter named session, it will be overwritten.
         input: Object.assign({}, req.query, req.params, { session: req.user }),
         res,
-        method: get
+        method: get,
       });
-    };
     router.get(route, getHandler);
   }
 
@@ -40,7 +41,7 @@ const createRoute = endpoint => {
       handleRequest({
         input: Object.assign({}, req.body, { session: req.user }),
         res,
-        method: post
+        method: post,
       });
     router.post(route, getHandler);
   }
@@ -48,5 +49,5 @@ const createRoute = endpoint => {
 
 module.exports = {
   initializeUsing: endpoints => endpoints.forEach(createRoute),
-  get: () => router
+  get: () => router,
 };

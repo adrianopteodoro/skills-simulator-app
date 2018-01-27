@@ -26,20 +26,12 @@ export default {
   components: {},
   computed: {
     success: {
-      get: function() {
-        return this.$store.state.status.success;
-      },
-      set: function(value) {
-        this.$store.dispatch("clearError");
-      }
+      get: () => this.$store.state.status.success,
+      set: value => this.$store.dispatch("clearError")
     },
     error: {
-      get: function() {
-        return this.$store.state.status.error;
-      },
-      set: function(value) {
-        this.$store.dispatch("clearError");
-      }
+      get: () => this.$store.state.status.error,
+      set: value => this.$store.dispatch("clearError")
     },
     ...mapGetters(["skills", "loading"])
   },
@@ -47,9 +39,7 @@ export default {
     page: "skills"
   },
   methods: {
-    getSkills() {
-      this.$store.dispatch("getSkills");
-    }
+    getSkills: () => this.$store.dispatch("getSkills")
   }
 };
 </script>

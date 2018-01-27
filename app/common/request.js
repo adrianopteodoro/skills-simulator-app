@@ -1,9 +1,7 @@
-function getSkills() {
-    return new Promise((resolve) => {
-        const params = {
-        };
-        resolve('true');
-    });
-}
+const getSkills = () =>
+  new Promise((resolve) => {
+    const params = { ok: true };
+    resolve(params);
+  });
 
-export default {getSkills};
+export default { getSkills };
