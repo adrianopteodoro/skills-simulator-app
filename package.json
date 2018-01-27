@@ -1,5 +1,5 @@
 {
-  "name": "skills-sample",
+  "name": "skills-simulator-app",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -16,6 +16,11 @@
     "presets": [
       "env"
     ]
+  },
+  "engine-strict": true,
+  "engines": {
+    "node": "9.x.x",
+    "npm": "5.x.x"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
