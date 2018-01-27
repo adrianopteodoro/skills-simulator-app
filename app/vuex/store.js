@@ -16,14 +16,14 @@ const stateObj = {
 };
 
 // define the possible getters that can be applied to our state
-const getters = {
+const gettersObj = {
   skills: state => state.skills,
   skill: state => keyword => _.find(state.skills, ['_id', keyword]),
   loading: state => state.status.loading,
 };
 
 // define the possible mutations that can be applied to our state
-const mutations = {
+const mutationsObj = {
   SET_SKILLS(state, payload) {
     _.assignIn(state.skills, payload);
   },
@@ -61,7 +61,7 @@ const mutations = {
 };
 
 // define the possible actions that can be applied to our state
-const actions = {
+const actionsObj = {
   getSkills(context) {
     context.commit('LOADING');
     Request.getSkills()
@@ -84,8 +84,8 @@ const actions = {
 // create the Vuex instance by combining the state and mutations objects
 // then export the Vuex store for use by our components
 export default new Vuex.Store({
-  stateObj,
-  getters,
-  mutations,
-  actions,
+  state: stateObj,
+  getters: gettersObj,
+  mutations: mutationsObj,
+  actions: actionsObj,
 });
