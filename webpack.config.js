@@ -55,10 +55,7 @@ module.exports = {
     },
     minimizer: [
       new UglifyJsPlugin({
-        sourceMap: true,
-        compress: {
-          warnings: false,
-        },
+        sourceMap: true
       })
     ]
   },
