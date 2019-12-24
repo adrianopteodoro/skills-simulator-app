@@ -51,7 +51,15 @@ module.exports = {
           chunks: "all"
         }
       }
-    }
+    },
+    minimizer: [
+      new webpack.optimize.UglifyJsPlugin({
+        sourceMap: true,
+        compress: {
+          warnings: false,
+        },
+      })
+    ]
   },
   plugins: [
     new CleanWebpackPlugin(pathsToClean, cleanOptions)
@@ -131,12 +139,6 @@ if (process.env.NODE_ENV === 'production') {
       template: path.join(appPath, 'views/index.pug'),
     }),
     new HtmlWebpackPugPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false,
-      },
-    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
     }),
