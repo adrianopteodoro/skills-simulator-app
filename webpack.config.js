@@ -4,6 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin = require("uglifyjs-3-webpack-plugin")
 
 const projectRoot = path.resolve(__dirname);
 const appPath = path.resolve(projectRoot, 'app');
@@ -53,7 +54,7 @@ module.exports = {
       }
     },
     minimizer: [
-      new webpack.optimize.UglifyJsPlugin({
+      new UglifyJsPlugin({
         sourceMap: true,
         compress: {
           warnings: false,
