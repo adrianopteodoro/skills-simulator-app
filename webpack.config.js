@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require("uglifyjs-3-webpack-plugin")
@@ -135,6 +136,9 @@ if (process.env.NODE_ENV === 'production') {
     new HtmlWebpackPlugin({
       filename: 'views/index.pug',
       template: path.join(appPath, 'views/index.pug'),
+    }),
+    new InterpolateHtmlPlugin({
+      'NODE_ENV': process.env.NODE_ENV
     }),
     new HtmlWebpackPugPlugin(),
     new webpack.LoaderOptionsPlugin({
