@@ -41,12 +41,20 @@ module.exports = {
       public: publicPath,
     },
   },
+  optimization: {
+    runtimeChunk: "single",
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor",
+          chunks: "all"
+        }
+      }
+    }
+  },
   plugins: [
-    new CleanWebpackPlugin(pathsToClean, cleanOptions),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: Infinity,
-    }),
+    new CleanWebpackPlugin(pathsToClean, cleanOptions)
   ],
   module: {
     rules: [
